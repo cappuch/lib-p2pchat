@@ -1,5 +1,7 @@
 P2P Chat/Data Library
 
+Created by sketching the architecture on paper and then pumping into Gemini 3.0
+
 Overview
 
 - UDP transport per node with a simple poll loop
