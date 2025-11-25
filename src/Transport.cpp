@@ -4,6 +4,7 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #pragma comment(lib, "ws2_32.lib")
+using ssize_t = SSIZE_T;
 #else
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -112,7 +113,7 @@ void Transport::poll(int timeoutMs, const PacketHandler& pktHandler, const RawHa
             uint16_t fromPort = ntohs(src.sin_port);
             // Discovery beacons start with "DISC"
             if (n >= 4 && buf[0]=='D' && buf[1]=='I' && buf[2]=='S' && buf[3]=='C') {
-                if (rawHandler) rawHandler(std::vector<uint8_t>(buf, buf + n), fromIp, fromPort);
+                if (rawHandler) rawHandler(std::vector<uint8_t>((uint8_t*)buf, (uint8_t*)buf + n), fromIp, fromPort);
             } else {
                 Packet pkt{};
                 if (Packet::deserialize((uint8_t*)buf, (size_t)n, pkt)) {
