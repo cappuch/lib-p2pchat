@@ -1,6 +1,7 @@
 #include "p2p/Crypto.hpp"
 
 #include <sodium.h>
+#include <cstdlib>
 
 namespace p2p::crypto {
 

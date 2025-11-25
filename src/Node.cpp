@@ -1,7 +1,11 @@
 #include "p2p/Node.hpp"
 
 #include <chrono>
+#ifdef _WIN32
+#include <winsock2.h>
+#else
 #include <arpa/inet.h>
+#endif
 #include <cstring>
 
 namespace p2p {
